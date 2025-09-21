@@ -1,6 +1,10 @@
+#!/bin/bash
+
 if [ $# -eq 0 ]; then
-    echo "No argument supplied"
+    echo "No arguments supplied"
 else
-    echo "Argument supplied"
-    mkdir "ex$1"
+    for arg in "$@"
+    do
+        mkdir "ex$arg"
+    done
 fi
