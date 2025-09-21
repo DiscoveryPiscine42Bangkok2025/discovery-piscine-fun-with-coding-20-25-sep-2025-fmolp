@@ -1,1 +1,2 @@
-find . -maxdepth 1 -type f -o -type d | wc -l | tr -d '\n'; echo '$'
+#!/bin/bash
+ls -1 | wc -l
