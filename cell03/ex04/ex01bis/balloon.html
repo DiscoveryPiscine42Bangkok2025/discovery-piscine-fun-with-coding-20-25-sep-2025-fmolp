@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Balloon</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #balloon {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      border-radius: 50%;
+      margin: 100px auto;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="balloon"></div>
+
+  <script>
+    $(document).ready(function () {
+      let size = 200;
+      const maxSize = 420;
+      const minSize = 200;
+      const colors = ["red", "green", "blue"];
+      let colorIndex = 0;
+
+      function updateBalloon() {
+        $("#balloon").css({
+          width: size + "px",
+          height: size + "px",
+          backgroundColor: colors[colorIndex]
+        });
+      }
+
+      $("#balloon").click(function () {
+        size += 10;
+        colorIndex = (colorIndex + 1) % colors.length;
+
+        if (size > maxSize) {
+          $("#balloon").remove(); // ระเบิด!
+        } else {
+          updateBalloon();
+        }
+      });
+
+      $("#balloon").mouseleave(function () {
+        size = Math.max(minSize, size - 5);
+        colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+        updateBalloon();
+      });
+    });
+  </script>
+
+</body>
+</html>
