@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    input, select {
+      margin: 5px;
+      padding: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="text" id="left" placeholder="Left operand">
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+    <option value="%">%</option>
+  </select>
+  <input type="text" id="right" placeholder="Right operand">
+  <input type="button" value="Try me!" id="calculate">
+
+  <script>
+    function isPositiveInteger(value) {
+      return /^\d+$/.test(value);
+    }
+
+    function doCalculation() {
+      const left = $("#left").val();
+      const right = $("#right").val();
+      const operator = $("#operator").val();
+
+      if (!isPositiveInteger(left) || !isPositiveInteger(right)) {
+        alert("Error :(");
+        return;
+      }
+
+      const num1 = parseInt(left);
+      const num2 = parseInt(right);
+
+      if ((operator === "/" || operator === "%") && num2 === 0) {
+        alert("It's over 9000!");
+        console.log("It's over 9000!");
+        return;
+      }
+
+      let result;
+      switch (operator) {
+        case "+": result = num1 + num2; break;
+        case "-": result = num1 - num2; break;
+        case "*": result = num1 * num2; break;
+        case "/": result = num1 / num2; break;
+        case "%": result = num1 % num2; break;
+        default:
+          alert("Error :(");
+          console.log("Error");
+          return;
+      }
+
+      if (isNaN(result)) {
+        alert("Error :(");
+        console.log("Error");
+      } else {
+        alert(result);
+        console.log(result);
+      }
+    }
+
+    $(document).ready(function () {
+      $("#calculate").click(doCalculation);
+
+      setInterval(function () {
+        alert("Please, use me…");
+      }, 30000);
+    });
+  </script>
+
+</body>
+</html>
