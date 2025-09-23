@@ -24,7 +24,6 @@
     let size = 200;
     let colorIndex = 0;
 
-    // Click: grow + cycle color forward
     balloon.addEventListener('click', () => {
       size += 10;
       if (size > 420) {
@@ -36,7 +35,6 @@
       updateBalloon();
     });
 
-    // Mouseleave: shrink + cycle color backward
     balloon.addEventListener('mouseleave', () => {
       size = Math.max(200, size - 5);
       colorIndex = (colorIndex - 1 + colors.length) % colors.length;
